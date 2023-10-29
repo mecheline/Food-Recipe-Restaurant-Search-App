@@ -69,15 +69,18 @@ const Homepage = () => {
       .filter((recipe) => recipe.recipe.label === label)
       .map((item) => item.recipe.totalWeight)
       .toString();
-    const filteredRecipeToNumber = +filteredRecipe;
+    const filteredRecipeToNumber = Number(filteredRecipe);
 
-    const convert = ((USD * filteredRecipeToNumber) / NGN).toFixed(2);
+    const convert = (
+      (Number(USD) * filteredRecipeToNumber) /
+      Number(NGN)
+    ).toFixed(2);
     console.log(convert);
     setValue(convert);
     // return convert;
   };
   const getLocalPriceInUSD = (price) => {
-    const convert = ((USD * price) / NGN).toFixed(2);
+    const convert = ((Number(USD) * Number(price)) / Number(NGN)).toFixed(2);
     console.log(convert);
     setValue(convert);
     // return convert;
