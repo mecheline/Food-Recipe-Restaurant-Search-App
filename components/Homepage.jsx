@@ -12,7 +12,7 @@ const Homepage = () => {
   const [NGN, setNGN] = useState("");
   const [value, setValue] = useState(Number());
   console.log(value);
-  console.log(typeof value);
+ 
 
   const [query, setQuery] = useState("");
   const [recipes, setRecipes] = useState([]);
@@ -57,7 +57,7 @@ const Homepage = () => {
 
   const getCurrency = async () => {
     const res = await axios.get(
-      `http://api.exchangeratesapi.io/v1/latest?access_key=${process.env.NEXT_PUBLIC_EXCHANGERATES_API_KEY}`
+      `https://api.exchangeratesapi.io/v1/latest?access_key=${process.env.NEXT_PUBLIC_EXCHANGERATES_API_KEY}`
     );
     console.log(res.data.rates.USD, res.data.rates.NGN);
     localStorage.setItem("USD", JSON.stringify(res.data.rates.USD));
@@ -83,6 +83,7 @@ const Homepage = () => {
 
     console.log(typeof convert, "convert");
     setValue(convert);
+    console.log(value,"value");
     // return convert;
   };
   const getLocalPriceInUSD = (price) => {
