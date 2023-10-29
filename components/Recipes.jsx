@@ -13,7 +13,7 @@ const Recipes = ({ data }) => {
         <tbody>
           {data &&
             data.map((record, index) => (
-              <tr onClick={() => rowClick(record.id)}>
+              <tr onClick={() => rowClick(record.id)} key={index}>
                 <th scope="row">{index + 1}</th>
                 <td>{record.name}</td>
                 <td>{record.quantity}</td>

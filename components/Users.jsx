@@ -20,7 +20,7 @@ const Users = ({ data }) => {
         <tbody>
           {data &&
             data.map((record, index) => (
-              <tr onClick={() => rowClick(record.id)}>
+              <tr onClick={() => rowClick(record.id)} key={index}>
                 <th scope="row">{index + 1}</th>
                 <td>{record.fullname}</td>
                 <td>{record.email}</td>

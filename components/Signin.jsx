@@ -52,7 +52,7 @@ const Signin = () => {
               onChange={(e) => setEmail(e.target.value)}
             />
             <div id="emailHelp" className="form-text">
-              We'll never share your email with anyone else.
+              We&lsquo;ll never share your email with anyone else.
             </div>
           </div>
           <div className="mb-3">
@@ -71,7 +71,7 @@ const Signin = () => {
             Signin
           </button>
           <small className="mt-2">
-            Don't have an account?{" "}
+            Don&lsquo;t have an account?{" "}
             <Link href="/auth/signup" legacyBehavior>
               <a className="text-decoration-none text-black fw-bold">Signup</a>
             </Link>
