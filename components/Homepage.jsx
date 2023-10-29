@@ -11,6 +11,8 @@ const Homepage = () => {
   const [USD, setUSD] = useState("");
   const [NGN, setNGN] = useState("");
   const [value, setValue] = useState(null);
+  console.log(value)
+  console.log(typeof value)
 
   const [query, setQuery] = useState("");
   const [recipes, setRecipes] = useState([]);
@@ -215,7 +217,7 @@ const Homepage = () => {
               ></button>
             </div>
             <div class="modal-body">
-              <h4>${value && value}</h4>
+              <h4>${value}</h4>
             </div>
           </div>
         </div>
