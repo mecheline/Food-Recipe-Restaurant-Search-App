@@ -77,9 +77,9 @@ const Homepage = () => {
     console.log(typeof naira);
     console.log(typeof filteredRecipeToNumber);
 
-    const convert = ((dollar * filteredRecipeToNumber) / naira).toFixed(2);
+    const convert = (dollar * filteredRecipeToNumber) / naira;
 
-    console.log(Number(convert), "convert");
+    console.log(convert, "convert");
     setValue(convert);
     // return convert;
   };
