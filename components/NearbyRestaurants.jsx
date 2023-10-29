@@ -124,7 +124,7 @@ export default function NearbyRestaurants() {
             <div>
               <h2>{selectedPark.properties.name}</h2>
               <p>{selectedPark.properties.address_line2}</p>
-              <p>{selectedPark.properties.distance}m away</p>
+              <p>{Number(selectedPark.properties.distance) / 1000} km away</p>
             </div>
           </Popup>
         ) : null}
