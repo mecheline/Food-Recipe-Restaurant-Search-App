@@ -10,9 +10,9 @@ const Homepage = () => {
   const router = useRouter();
   const [USD, setUSD] = useState("");
   const [NGN, setNGN] = useState("");
-  const [value, setValue] = useState(null);
-  console.log(value)
-  console.log(typeof value)
+  const [value, setValue] = useState(Number());
+  console.log(value);
+  console.log(typeof value);
 
   const [query, setQuery] = useState("");
   const [recipes, setRecipes] = useState([]);
