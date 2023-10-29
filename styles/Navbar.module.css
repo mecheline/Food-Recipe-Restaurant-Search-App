@@ -1,0 +1,25 @@
+.linkHover img{
+    cursor: pointer;
+}
+
+.linkHover a{
+    color:white;
+    text-decoration: none;
+    
+}
+.linkHover a:hover{
+    color:rgb(158, 154, 154)
+    
+}
+.linkHover button{
+    color:white;
+    
+}
+.linkHover button:hover{
+    color:rgb(158, 154, 154)
+    
+}
+.linkHover ul{
+    width: max-content;
+    
+}

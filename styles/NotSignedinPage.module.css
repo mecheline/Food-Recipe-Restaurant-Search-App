@@ -1,0 +1,27 @@
+.main {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.text {
+  width: 50%;
+}
+.text .link {
+  width: fit-content;
+  margin-top: 2rem;
+}
+.text .link a {
+  border: 1px solid #630163;
+  border-radius: 8px;
+  padding: 8px 16px;
+  color: black;
+}
+.text .link a:hover {
+  background-color: #630163;
+  color: white;
+}
+
+.lottie {
+  width: 50%;
+}

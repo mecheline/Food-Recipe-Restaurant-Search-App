@@ -1,0 +1,7 @@
+.main {
+  width: 400px;
+  margin: 1rem auto;
+}
+.main i {
+  cursor: pointer;
+}

@@ -1,0 +1,26 @@
+.markerbtn {
+  background: none;
+  border: none;
+  cursor: pointer;
+  color: red;
+  font-size: 20px;
+}
+
+.form {
+  width: 500px;
+  background-color: #630163;
+  height: auto;
+  margin: 2rem auto;
+  padding: 2rem;
+  
+}
+.form input {
+  width: 80%;
+  height: 40px;
+}
+.form button {
+  width: 20%;
+  height: 40px;
+  background-color: #630163;
+  color: white;
+}

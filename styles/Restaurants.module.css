@@ -1,0 +1,25 @@
+.name {
+  display: flex;
+  flex-direction: row;
+  align-items: flex-start;
+  justify-content: flex-start;
+  column-gap: 2rem;
+
+}
+
+.name .list {
+  width: 30%;
+  background-color: #630163;
+  color: white;
+  border-radius: 8px;
+}
+.name .list a {
+    padding: 1rem;
+  border-bottom: 1px solid white;
+}
+.name .list a:hover {
+   background-color: #410441;
+}
+.name .map {
+  width: 70%;
+}

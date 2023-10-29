@@ -1,0 +1,74 @@
+.spread {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  column-gap: 2rem;
+}
+
+.form {
+  width: 500px;
+  background-color: #630163;
+  height: auto;
+
+  padding: 2rem;
+}
+.form input {
+  width: 80%;
+  height: 40px;
+}
+.form button {
+  width: 20%;
+  height: 40px;
+  background-color: #630163;
+  color: white;
+}
+.restaurantButton {
+  width: 50%;
+  background-color: #630163;
+  padding: 2rem;
+}
+.restaurantButton button {
+  width: 50%;
+  margin :0 auto;
+  color: white;
+  background-color: #630163;
+  padding: 8px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid white;
+  border-radius: 8px;
+}
+.cards {
+  margin-top: 4rem;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: flex-start;
+  row-gap: 1rem;
+  column-gap: 1rem;
+}
+.cards .innerCard {
+  width: 32%;
+}
+.cards .innerCard .spread {
+  display: flex;
+}
+.cards .innerCard .spread .image {
+  width: 40%;
+}
+.cards .innerCard .spread .image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}
+.cards .innerCard .spread .text {
+  width: 60%;
+}
+.cards .innerCard .spread .text button {
+  padding: 8px 16px;
+  border-radius: 8px;
+  background-color: #630163;
+  color: white;
+}

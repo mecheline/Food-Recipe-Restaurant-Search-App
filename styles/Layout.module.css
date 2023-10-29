@@ -1,0 +1,23 @@
+.main {
+  /* display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  padding: 6rem; */
+  margin-top: 8rem;
+  min-height: 100vh;
+}
+
+.footer {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  padding: 2rem 0;
+  justify-content: center;
+  align-items: center;
+  background-color: #630163;
+}
+.footer h4 {
+  color: white;
+  font-size: 16px;
+}
