@@ -71,7 +71,12 @@ const Homepage = () => {
       .toString();
     const filteredRecipeToNumber = Number(filteredRecipe);
 
+    console.log(typeof USD);
+    console.log(typeof NGN);
+    console.log(typeof filteredRecipeToNumber);
+
     const convert = ((USD * filteredRecipeToNumber) / NGN).toFixed(2);
+
     console.log(Number(convert), "convert");
     setValue(Number(convert));
     // return convert;
