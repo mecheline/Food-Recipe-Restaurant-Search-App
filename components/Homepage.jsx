@@ -73,14 +73,14 @@ const Homepage = () => {
     const dollar = Number(USD);
     const naira = Number(NGN);
 
-    console.log(typeof USD);
-    console.log(typeof NGN);
+    console.log(typeof dollar);
+    console.log(typeof naira);
     console.log(typeof filteredRecipeToNumber);
 
     const convert = ((dollar * filteredRecipeToNumber) / naira).toFixed(2);
 
     console.log(Number(convert), "convert");
-    setValue(Number(convert));
+    setValue(convert);
     // return convert;
   };
   const getLocalPriceInUSD = (price) => {
