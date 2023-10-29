@@ -71,9 +71,9 @@ const Homepage = () => {
       .filter((recipe) => recipe.recipe.label === label)
       .map((item) => item.recipe.totalWeight)
       .toString();
-    const filteredRecipeToNumber = parseInt(filteredRecipe);
-    const dollar = parseInt(USD);
-    const naira = parseInt(NGN);
+    const filteredRecipeToNumber = parseFloat(filteredRecipe);
+    const dollar = parseFloat(USD);
+    const naira = parseFloat(NGN);
 
     console.log(dollar);
     console.log(naira);
