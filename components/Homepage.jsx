@@ -8,9 +8,9 @@ import data from "./data";
 
 const Homepage = () => {
   const router = useRouter();
-  const [USD, setUSD] = useState();
-  const [NGN, setNGN] = useState();
-  const [value, setValue] = useState("");
+  const [USD, setUSD] = useState("");
+  const [NGN, setNGN] = useState("");
+  const [value, setValue] = useState();
 
   const [query, setQuery] = useState("");
   const [recipes, setRecipes] = useState([]);
