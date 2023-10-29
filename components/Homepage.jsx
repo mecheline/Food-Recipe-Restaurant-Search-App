@@ -71,18 +71,15 @@ const Homepage = () => {
       .toString();
     const filteredRecipeToNumber = Number(filteredRecipe);
 
-    const convert = (
-      (Number(USD) * filteredRecipeToNumber) /
-      Number(NGN)
-    ).toFixed(2);
+    const convert = ((USD * filteredRecipeToNumber) / NGN).toFixed(2);
     console.log(convert);
-    setValue(convert);
+    setValue(Number(convert));
     // return convert;
   };
   const getLocalPriceInUSD = (price) => {
-    const convert = ((Number(USD) * Number(price)) / Number(NGN)).toFixed(2);
+    const convert = ((USD * price) / NGN).toFixed(2);
     console.log(convert);
-    setValue(convert);
+    setValue(Number(convert));
     // return convert;
   };
   return (
