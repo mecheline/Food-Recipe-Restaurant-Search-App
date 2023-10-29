@@ -70,12 +70,14 @@ const Homepage = () => {
       .map((item) => item.recipe.totalWeight)
       .toString();
     const filteredRecipeToNumber = Number(filteredRecipe);
+    const dollar = Number(USD);
+    const naira = Number(NGN);
 
     console.log(typeof USD);
     console.log(typeof NGN);
     console.log(typeof filteredRecipeToNumber);
 
-    const convert = ((USD * filteredRecipeToNumber) / NGN).toFixed(2);
+    const convert = ((dollar * filteredRecipeToNumber) / naira).toFixed(2);
 
     console.log(Number(convert), "convert");
     setValue(Number(convert));
