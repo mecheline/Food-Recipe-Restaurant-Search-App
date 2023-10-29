@@ -73,9 +73,9 @@ const Homepage = () => {
     const dollar = Number(USD);
     const naira = Number(NGN);
 
-    console.log(typeof dollar);
-    console.log(typeof naira);
-    console.log(typeof filteredRecipeToNumber);
+    console.log(dollar);
+    console.log(naira);
+    console.log(filteredRecipeToNumber);
 
     const convert = (dollar * filteredRecipeToNumber) / naira;
 
