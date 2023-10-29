@@ -10,7 +10,7 @@ const Homepage = () => {
   const router = useRouter();
   const [USD, setUSD] = useState("");
   const [NGN, setNGN] = useState("");
-  const [value, setValue] = useState();
+  const [value, setValue] = useState(null);
 
   const [query, setQuery] = useState("");
   const [recipes, setRecipes] = useState([]);
@@ -72,7 +72,7 @@ const Homepage = () => {
     const filteredRecipeToNumber = Number(filteredRecipe);
 
     const convert = ((USD * filteredRecipeToNumber) / NGN).toFixed(2);
-    console.log(convert,"convert");
+    console.log(Number(convert), "convert");
     setValue(Number(convert));
     // return convert;
   };
