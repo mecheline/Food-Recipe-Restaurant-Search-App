@@ -70,15 +70,16 @@ const Homepage = () => {
       .filter((recipe) => recipe.recipe.label === label)
       .map((item) => item.recipe.totalWeight)
       .toString();
-    
+    calcPrice(filteredRecipe);
 
-    // const convert = (dollar * filteredRecipeToNumber) / naira;
-    const convert = USD * filteredRecipe;
-    const result = convert / NGN;
-    console.log(result);
-    setValue(result);
+    // const convert = USD * filteredRecipe;
+    // const result = convert / NGN;
+    // console.log(result);
+    // setValue(result);
+  };
 
-   
+  const calcPrice = (filteredRecipe) => {
+    console.log(filteredRecipe, USD, NGN);
   };
   const getLocalPriceInUSD = (price) => {
     const convert = ((USD * price) / NGN).toFixed(2);
