@@ -37,12 +37,12 @@
 }
 @media (max-width: 576px) {
   .form {
-  width: 100%;
-  background-color: #630163;
-  height: auto;
+    width: 100%;
+    background-color: #630163;
+    height: auto;
 
-  padding: 1rem;
-}
+    padding: 1rem;
+  }
 }
 .form input {
   width: 80%;
@@ -115,15 +115,19 @@
   }
 }
 .cards .innerCard {
-  width: 32%;
+  width: 47%;
+  height: 200px;
 }
 @media (max-width: 576px) {
   .cards .innerCard {
     width: 100%;
+    height: 100%;
   }
 }
 .cards .innerCard .spread {
   display: flex;
+  align-items: flex-start;
+  justify-content: flex-start;
 }
 @media (max-width: 576px) {
   .cards .innerCard .spread {
@@ -141,8 +145,15 @@
 }
 .cards .innerCard .spread .image img {
   width: 100%;
-  height: 100%;
+  height: 200px;
   object-fit: cover;
+}
+@media (max-width: 576px) {
+  .cards .innerCard .spread .image img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
 .cards .innerCard .spread .text {
@@ -153,6 +164,22 @@
     width: 100%;
   }
 }
+.contain {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  justify-content: flex-start;
+}
+
+@media (max-width: 576px) {
+  .contain {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
+
 .cards .innerCard .spread .text button {
   padding: 8px 16px;
   border-radius: 8px;

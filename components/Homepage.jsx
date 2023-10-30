@@ -6,7 +6,10 @@ import styles from "../styles/Home.module.css";
 import { useRouter } from "next/router";
 import data from "./data";
 
+import { useSession } from "next-auth/react";
+
 const Homepage = () => {
+  const { data: session } = useSession();
   const router = useRouter();
   const [USD, setUSD] = useState("");
   const [NGN, setNGN] = useState("");
@@ -19,7 +22,9 @@ const Homepage = () => {
 
   const postRecipe = async () => {
     console.log(query);
-    await axios.post("/api/store", { query });
+    if (!session.user.isAdmin) {
+      await axios.post("/api/store", { query });
+    }
   };
 
   const getRecipes = async () => {
@@ -108,10 +113,7 @@ const Homepage = () => {
         {recipes.length > 0
           ? recipes.map((recipe, index) => {
               return (
-                <div
-                  key={recipe.label}
-                  className={`card h-100 ${styles.innerCard}`}
-                >
+                <div key={recipe.label} className={`card ${styles.innerCard}`}>
                   <div className={styles.spread}>
                     <div className={styles.image}>
                       <img
@@ -126,7 +128,8 @@ const Homepage = () => {
                         <p class="card-text">
                           Calories: {recipe.recipe.calories.toFixed(2)}
                         </p>
-                        <div className="d-flex justify-content-between align-items-center">
+                        {/* <div className="d-flex flex-column justify-content-start align-items-start"> */}
+                        <div className={styles.contain}>
                           <h6 class="text-body-secondary fw-bolder">
                             ₦{Math.floor(recipe.recipe.totalWeight)}.00
                           </h6>
@@ -137,7 +140,7 @@ const Homepage = () => {
                             data-bs-target="#exampleModal"
                             onClick={() => getPriceInUSD(recipe.recipe.label)}
                           >
-                            Price(USD)
+                            Price in USD
                           </button>
                         </div>
                       </div>
@@ -148,10 +151,7 @@ const Homepage = () => {
             })
           : data.map((item) => {
               return (
-                <div
-                  key={item.name}
-                  className={`card h-100 ${styles.innerCard}`}
-                >
+                <div key={item.name} className={`card ${styles.innerCard}`}>
                   <div className={styles.spread}>
                     <div className={styles.image}>
                       <img
@@ -166,7 +166,7 @@ const Homepage = () => {
                         <p class="card-text">
                           Calories: {item.calories.toFixed(2)}
                         </p>
-                        <div className="d-flex justify-content-between align-items-center">
+                        <div className={styles.contain}>
                           <h6 class="text-body-secondary fw-bolder">
                             ₦{Math.floor(item.price)}.00
                           </h6>
@@ -177,7 +177,7 @@ const Homepage = () => {
                             data-bs-target="#exampleModal"
                             onClick={() => getLocalPriceInUSD(item.price)}
                           >
-                            Price(USD)
+                            Price in USD
                           </button>
                         </div>
                       </div>
