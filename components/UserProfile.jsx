@@ -1,4 +1,4 @@
-import { signOut, useSession } from "next-auth/react";
+import { useSession } from "next-auth/react";
 import styles from "../styles/Profile.module.css";
 import { useRouter } from "next/router";
 import { toast } from "react-toastify";
