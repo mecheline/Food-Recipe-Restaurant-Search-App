@@ -15,7 +15,7 @@ const Layout = ({ children }) => {
       <div className={`container ${styles.main}`}>{children}</div>
 
       <div className={styles.footer}>
-        <h4>Miss Ore © 2023. ALL RIGHTS RESERVED.</h4>
+        <h4><span>findRecipe</span> © 2023. ALL RIGHTS RESERVED.</h4>
       </div>
     </div>
   );

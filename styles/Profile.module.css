@@ -5,3 +5,31 @@
 .main i {
   cursor: pointer;
 }
+.main .button{
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: none;
+  background-color: transparent;
+}
+.main .button:hover{
+  background-color: #630163;
+  color: white;
+}
+.main .container{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.main .container .image{
+  width: 50%;
+}
+.main .container .image img{
+  width: 100%;
+}
+.main .container .text{
+  width: 50%;
+}
+.main .container .text .email{
+  display: flex;
+  column-gap: 1rem;
+}

@@ -3,19 +3,65 @@
   align-items: center;
   justify-content: space-between;
 }
+@media (max-width: 576px) {
+  .main {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    justify-content: space-between;
+  }
+}
 
 .text {
   width: 50%;
+  margin-top: 0;
+}
+@media (max-width: 576px) {
+  .text {
+    width: 100%;
+    margin-top: 3rem;
+  }
+}
+
+.text h3 {
+  color: #630163;
+  font-size: 40px;
+}
+
+@media (max-width: 576px) {
+  .text h3 {
+  color: #630163;
+  font-size: 30px;
+  text-align: center;
+}
+}
+.text .para {
+  margin-top: 1rem;
 }
 .text .link {
   width: fit-content;
   margin-top: 2rem;
+}
+@media (max-width: 576px) {
+  .text .link {
+    width: 100%;
+    margin-top: 3rem;
+    text-align: center;
+  }
 }
 .text .link a {
   border: 1px solid #630163;
   border-radius: 8px;
   padding: 8px 16px;
   color: black;
+}
+@media (max-width: 576px) {
+  .text .link a {
+    border: 1px solid #630163;
+    border-radius: 8px;
+    padding: 8px 16px;
+    color: black;
+  }
 }
 .text .link a:hover {
   background-color: #630163;

@@ -21,4 +21,9 @@
 .footer h4 {
   color: white;
   font-size: 16px;
+  
+}
+.footer h4 span {
+ font-size: 20px;
+  font-family: 'Grand Hotel', cursive !important ;
 }

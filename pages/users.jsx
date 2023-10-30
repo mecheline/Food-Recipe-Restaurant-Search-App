@@ -36,7 +36,7 @@ export async function getServerSideProps(params) {
           fullname: record ? record.fullname : "",
           email: record ? record.email : "",
           gender: record ? record.gender : "",
-
+          isAdmin: record ? record.isAdmin : "",
           id: record ? record._id.toString() : "",
         };
       }),

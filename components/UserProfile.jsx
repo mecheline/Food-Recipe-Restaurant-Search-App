@@ -5,52 +5,59 @@ import { toast } from "react-toastify";
 import axios from "axios";
 
 const UserProfile = ({ data }) => {
+  console.log(data);
   const router = useRouter();
   const { data: session } = useSession();
 
   const handleDelete = async (id) => {
     console.log(id);
-    try {
-      const res = await axios.delete(`/api/delete/${id}`);
-      console.log(res.data);
-      toast.success(res.data.message, {
-        position: toast.POSITION.BOTTOM_RIGHT,
-      });
-      // await signOut({ redirect: false });
-      router.push("/auth/signin");
-    } catch (error) {
-      console.log(error);
+    if (prompt(`Do you want to deactivate ${data.name} account`, "Yes")) {
+      try {
+        const res = await axios.delete(`/api/delete/${id}`);
+        console.log(res.data);
+        toast.success(res.data.message, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
+        // await signOut({ redirect: false });
+        router.push("/users");
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 
   return (
     <div className={styles.main}>
       <div className="mb-3 text-center">
-        <i
-          class="bi bi-skip-backward-fill fs-1"
-          onClick={() => router.back()}
-        ></i>
+        <button onClick={() => router.back()} className={styles.button}>
+          <i class="bi bi-chevron-double-left"></i> Go Back
+        </button>
       </div>
-      <div key={data.id} class="card shadow">
-        <img
-          src="https://media.istockphoto.com/id/1698148398/photo/3d-user-profile-icon-person-icon-employee-icon-avatar-icon-people-icon-web-user-symbol-social.jpg?s=612x612&w=0&k=20&c=3pOYEitRjh8KrFoUaLWuYxiz8kK9hiHr8-ph-gZDzuQ="
-          class="card-img-top"
-          alt="..."
-        />
-        <div class="card-body">
-          <h5 class="card-title">{data.name}</h5>
-          <p class="card-text">Email: {data.email}</p>
-          <p class="card-text">Gender: {data.gender}</p>
-          {/* <a
+      <div className={styles.container}>
+        <div className={styles.image}>
+          <img
+            src="https://static.vecteezy.com/system/resources/previews/002/608/327/original/mobile-application-avatar-web-button-menu-digital-silhouette-style-icon-free-vector.jpg"
+            alt="..."
+          />
+        </div>
+
+        <div class={styles.text}>
+          <h5 class="">{data.name}</h5>
+          <h6>{data.gender}</h6>
+          <div className={styles.email}>
+            <p class="">Email: </p>
+            <p>{data.email}</p>
+          </div>
+
+          <a
             href="#"
             class="btn btn-danger"
             onClick={() => handleDelete(data.id)}
           >
             Deactivate account
-          </a> */}
+          </a>
         </div>
       </div>
-      ;
     </div>
   );
 };

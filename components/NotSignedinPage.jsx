@@ -10,7 +10,7 @@ const NotSignedinPage = () => {
       <div className={styles.text}>
         <Slide left>
           <h3>Welcome to Mrs. Ore Foods</h3>
-          <p>
+          <p className={styles.para}>
             Where you can find your favorite recipe with their calories count
             and prices
           </p>

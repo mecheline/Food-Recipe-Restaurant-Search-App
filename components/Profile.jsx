@@ -28,16 +28,27 @@ const Profile = () => {
   return (
     <div className={styles.main}>
       <div className="mb-3 text-center">
-        <i
+        {/* <i
           class="bi bi-skip-backward-fill fs-1"
           onClick={() => router.back()}
-        ></i>
+        ></i> */}
+        <button onClick={() => router.back()} className={styles.button}>
+          <i class="bi bi-chevron-double-left"></i> Go Back
+        </button>
       </div>
-      <div class="card shadow">
-        <img src="./images/avatar.jpg" class="card-img-top" alt="..." />
-        <div class="card-body">
-          <h5 class="card-title">{session.user.fullname}</h5>
-          <p class="card-text">Email: {session.user.email}</p>
+      <div className={styles.container}>
+        <div className={styles.image}>
+          <img src="./images/avatar.jpg" alt="..." />
+        </div>
+
+        <div class={styles.text}>
+          <h5 class="">{session.user.fullname}</h5>
+          <h6>{session.user.gender}</h6>
+          <div className={styles.email}>
+            <p class="">Email: </p>
+            <p>{session.user.email}</p>
+          </div>
+
           <a
             href="#"
             class="btn btn-danger"

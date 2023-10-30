@@ -7,7 +7,7 @@ import "mapbox-gl/dist/mapbox-gl.css";
 import { ToastContainer } from "react-toastify";
 import { useEffect } from "react";
 import { SessionProvider } from "next-auth/react";
-import { Inter, Plus_Jakarta_Sans } from "next/font/google";
+import {  Plus_Jakarta_Sans  } from "next/font/google";
 
 // If loading a variable font, you don't need to specify the font weight
 const pjs = Plus_Jakarta_Sans({ subsets: ["latin"] });

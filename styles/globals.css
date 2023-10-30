@@ -114,3 +114,6 @@ a {
 tr{
   cursor: pointer;
 }
+.navbar-brand{
+  font-family: 'Grand Hotel', cursive !important;
+}

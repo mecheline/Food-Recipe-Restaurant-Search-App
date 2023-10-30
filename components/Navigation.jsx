@@ -1,6 +1,7 @@
 import Link from "next/link";
 import { signOut, useSession } from "next-auth/react";
 import { useRouter } from "next/router";
+import styles from "../styles/Navbar.module.css";
 
 const Navigation = () => {
   const router = useRouter();
@@ -18,7 +19,12 @@ const Navigation = () => {
     >
       <div className="container">
         <Link className="navbar-brand" href="/" legacyBehavior>
-          <a className="text-decoration-none text-white">GetConnected</a>
+          <a
+            className={`${styles.navbar} text-decoration-none text-white`}
+            style={{ fontSize: "20px" }}
+          >
+            findRecipe
+          </a>
         </Link>
         <button
           className="navbar-toggler bg-white"
@@ -31,7 +37,7 @@ const Navigation = () => {
         >
           <span className="navbar-toggler-icon"></span>
         </button>
-        <div className="collapse navbar-collapse" id="navbarTogglerDemo02">
+        <div className="collapse navbar-collapse text-center" id="navbarTogglerDemo02">
           <ul className="navbar-nav mx-auto mb-2 mb-lg-0">
             {session && (
               <li className="nav-item px-2">
@@ -99,7 +105,10 @@ const Navigation = () => {
               <>
                 <li className="nav-item px-2">
                   <Link className="nav-link" href="/users" legacyBehavior>
-                    <span className="nav-link" style={{color:"#ccc"}}>
+                    <span
+                      className={`${styles.navbar} nav-link text-white`}
+                      style={{ fontSize: "20px" }}
+                    >
                       signed in as {session.user.email}
                     </span>
                   </Link>

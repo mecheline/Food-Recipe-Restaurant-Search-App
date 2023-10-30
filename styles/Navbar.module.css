@@ -1,3 +1,13 @@
+
+  @import url('https://fonts.googleapis.com/css2?family=Grand+Hotel&display=swap');
+
+  .navbar{
+    font-family: 'Grand Hotel', cursive !important ;
+    font-size: medium;
+  }
+
+/* 
+
 .linkHover img{
     cursor: pointer;
 }
@@ -22,4 +32,4 @@
 .linkHover ul{
     width: max-content;
     
-}
+} */
