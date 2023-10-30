@@ -10,7 +10,7 @@ const Homepage = () => {
   const router = useRouter();
   const [USD, setUSD] = useState("");
   const [NGN, setNGN] = useState("");
-  const [value, setValue] = useState(Number());
+  const [value, setValue] = useState("");
   console.log(value);
  
 
@@ -49,10 +49,10 @@ const Homepage = () => {
   });
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    // const interval = setInterval(() => {
       getCurrency();
-    }, 86400);
-    return () => clearInterval(interval);
+    // }, 86400);
+    // return () => clearInterval(interval);
   }, []);
 
   const getCurrency = async () => {
@@ -67,22 +67,22 @@ const Homepage = () => {
   };
 
   const getPriceInUSD = (label) => {
-    const filteredRecipe = recipes
-      .filter((recipe) => recipe.recipe.label === label)
-      .map((item) => item.recipe.totalWeight)
-      .toString();
-    const filteredRecipeToNumber = parseFloat(filteredRecipe);
-    const dollar = parseFloat(USD);
-    const naira = parseFloat(NGN);
+    // const filteredRecipe = recipes
+      // .filter((recipe) => recipe.recipe.label === label)
+      // .map((item) => item.recipe.totalWeight)
+      // .toString();
+    // const filteredRecipeToNumber = parseFloat(filteredRecipe);
+    // const dollar = parseFloat(USD);
+    // const naira = parseFloat(NGN);
 
-    console.log(dollar);
-    console.log(naira);
-    console.log(filteredRecipeToNumber);
+    // console.log(dollar);
+    // console.log(naira);
+    // console.log(filteredRecipeToNumber);
 
-    const convert = (dollar * filteredRecipeToNumber) / naira;
+    // const convert = (dollar * filteredRecipeToNumber) / naira;
 
     console.log(convert, "convert");
-    setValue(convert);
+    setValue(300);
     console.log(value,"value");
     // return convert;
   };
