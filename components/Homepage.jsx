@@ -52,7 +52,7 @@ const Homepage = () => {
     getCurrency();
     // }, 86400);
     // return () => clearInterval(interval);
-  }, []);
+  }, [getPriceInUSD]);
 
   const getCurrency = async () => {
     const res = await axios.get(
