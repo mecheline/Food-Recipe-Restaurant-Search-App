@@ -12,7 +12,6 @@ const Homepage = () => {
   const [NGN, setNGN] = useState("");
   const [value, setValue] = useState("");
   console.log(value);
- 
 
   const [query, setQuery] = useState("");
   const [recipes, setRecipes] = useState([]);
@@ -50,7 +49,7 @@ const Homepage = () => {
 
   useEffect(() => {
     // const interval = setInterval(() => {
-      getCurrency();
+    getCurrency();
     // }, 86400);
     // return () => clearInterval(interval);
   }, []);
@@ -67,10 +66,10 @@ const Homepage = () => {
   };
 
   const getPriceInUSD = (label) => {
-    // const filteredRecipe = recipes
-      // .filter((recipe) => recipe.recipe.label === label)
-      // .map((item) => item.recipe.totalWeight)
-      // .toString();
+    const filteredRecipe = recipes
+      .filter((recipe) => recipe.recipe.label === label)
+      .map((item) => item.recipe.totalWeight)
+      .toString();
     // const filteredRecipeToNumber = parseFloat(filteredRecipe);
     // const dollar = parseFloat(USD);
     // const naira = parseFloat(NGN);
@@ -80,10 +79,11 @@ const Homepage = () => {
     // console.log(filteredRecipeToNumber);
 
     // const convert = (dollar * filteredRecipeToNumber) / naira;
+    setValue((USD * filteredRecipe) / NGN);
 
     // console.log(convert, "convert");
-    setValue(300);
-    console.log(value,"value");
+    // setValue(300);
+    // console.log(value,"value");
     // return convert;
   };
   const getLocalPriceInUSD = (price) => {
