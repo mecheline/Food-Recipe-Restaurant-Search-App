@@ -79,7 +79,7 @@ const Homepage = () => {
     // console.log(filteredRecipeToNumber);
 
     // const convert = (dollar * filteredRecipeToNumber) / naira;
-    const convert = +USD * +filteredRecipe;
+    const convert = +(USD * filteredRecipe);
     console.log(convert);
     setValue(convert);
 
