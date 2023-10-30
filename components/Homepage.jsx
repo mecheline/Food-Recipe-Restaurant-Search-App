@@ -47,6 +47,30 @@ const Homepage = () => {
     }
   });
 
+    const getPriceInUSD = (label) => {
+      const filteredRecipe = recipes
+        .filter((recipe) => recipe.recipe.label === label)
+        .map((item) => item.recipe.totalWeight)
+        .toString();
+      // const filteredRecipeToNumber = parseFloat(filteredRecipe);
+      // const dollar = parseFloat(USD);
+      // const naira = parseFloat(NGN);
+
+      // console.log(dollar);
+      // console.log(naira);
+      // console.log(filteredRecipeToNumber);
+
+      // const convert = (dollar * filteredRecipeToNumber) / naira;
+      const convert = +(USD * filteredRecipe);
+      console.log(convert);
+      setValue(convert);
+
+      // console.log(convert, "convert");
+      // setValue(300);
+      // console.log(value,"value");
+      // return convert;
+    };
+
   useEffect(() => {
     // const interval = setInterval(() => {
     getCurrency();
@@ -65,29 +89,7 @@ const Homepage = () => {
     setNGN(res.data.rates.NGN);
   };
 
-  const getPriceInUSD = (label) => {
-    const filteredRecipe = recipes
-      .filter((recipe) => recipe.recipe.label === label)
-      .map((item) => item.recipe.totalWeight)
-      .toString();
-    // const filteredRecipeToNumber = parseFloat(filteredRecipe);
-    // const dollar = parseFloat(USD);
-    // const naira = parseFloat(NGN);
 
-    // console.log(dollar);
-    // console.log(naira);
-    // console.log(filteredRecipeToNumber);
-
-    // const convert = (dollar * filteredRecipeToNumber) / naira;
-    const convert = +(USD * filteredRecipe);
-    console.log(convert);
-    setValue(convert);
-
-    // console.log(convert, "convert");
-    // setValue(300);
-    // console.log(value,"value");
-    // return convert;
-  };
   const getLocalPriceInUSD = (price) => {
     const convert = ((USD * price) / NGN).toFixed(2);
     console.log(convert);
