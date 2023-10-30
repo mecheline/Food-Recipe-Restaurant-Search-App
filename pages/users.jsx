@@ -1,7 +1,12 @@
 import Layout from "@/components/Layout";
-import Users from "@/components/Users";
+
 import connectDB from "@/lib/db";
 import User from "@/models/user";
+
+import dynamic from "next/dynamic";
+const Users = dynamic(() => import("@/components/Users"), {
+  ssr: false,
+});
 
 const users = ({ data }) => {
   return (
@@ -17,7 +22,7 @@ export async function getServerSideProps(params) {
 
   await connectDB();
   try {
-    data = await User.find();
+    data = await User.find({ isAdmin: false });
     // data = response.json();
     console.log(data);
   } catch (error) {

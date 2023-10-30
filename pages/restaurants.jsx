@@ -1,15 +1,14 @@
 import Layout from "@/components/Layout";
-import Restaurants from "@/components/Restaurants";
-import React from "react";
+
 import connectDB from "@/lib/db";
 import Restaurant from "@/models/restaurant";
 
-// import dynamic from "next/dynamic";
-// const Restaurants = dynamic(() => import("@/components/Restaurants"), {
-//   ssr: false,
-// });
+import dynamic from "next/dynamic";
+const Restaurants = dynamic(() => import("@/components/Restaurants"), {
+  ssr: false,
+});
 
-const RestaurantPage = ({data}) => {
+const RestaurantPage = ({ data }) => {
   return (
     <Layout>
       <Restaurants data={data} />
@@ -18,7 +17,6 @@ const RestaurantPage = ({data}) => {
 };
 
 export default RestaurantPage;
-
 
 export async function getServerSideProps(params) {
   let response;

@@ -1,3 +1,11 @@
+.cover {
+  margin: 0;
+  padding: 0;
+
+  align-items: center;
+  overflow-x: hidden;
+}
+
 .markerbtn {
   background: none;
   border: none;
@@ -6,13 +14,51 @@
   font-size: 20px;
 }
 
+.popup {
+  width: auto;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+@media (max-width: 576px) {
+  .markerbtn {
+    background: none;
+    border: none;
+    cursor: pointer;
+    color: red;
+    font-size: 20px;
+    width: 100%;
+  }
+}
+.main {
+  width: 100%;
+  display: flex;
+}
+@media (max-width: 576px) {
+  .main {
+    width: 100%;
+    display: flex;
+  }
+}
+
 .form {
   width: 500px;
   background-color: #630163;
   height: auto;
   margin: 2rem auto;
   padding: 2rem;
-  
+}
+@media (max-width: 576px) {
+  .form {
+    width: 100%;
+    background-color: #630163;
+    height: auto;
+
+    padding: 1rem;
+  }
 }
 .form input {
   width: 80%;

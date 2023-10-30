@@ -9,14 +9,21 @@ const Users = ({ data }) => {
   return (
     <div class="table-responsive">
       <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-            <th scope="col">Gender</th>
-          </tr>
-        </thead>
+        {data.length > 0 ? (
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Name</th>
+              <th scope="col">Email</th>
+              <th scope="col">Gender</th>
+            </tr>
+          </thead>
+        ) : (
+          <div className="text-center">
+            <h4 className="fs-1 text-muted">You have no authenticated User in this platform</h4>
+          </div>
+        )}
+
         <tbody>
           {data &&
             data.map((record, index) => (

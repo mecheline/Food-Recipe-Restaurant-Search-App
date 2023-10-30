@@ -10,16 +10,18 @@ const Profile = () => {
 
   const handleDelete = async (id) => {
     console.log(id);
-    try {
-      const res = await axios.delete(`/api/delete/${id}`);
-      console.log(res.data);
-      toast.success(res.data.message, {
-        position: toast.POSITION.BOTTOM_RIGHT,
-      });
-      await signOut({ redirect: false });
-      router.push("/auth/signin");
-    } catch (error) {
-      console.log(error);
+    if (prompt("Do you want to deactivate your account", "Yes")) {
+      try {
+        const res = await axios.delete(`/api/delete/${id}`);
+        console.log(res.data);
+        toast.success(res.data.message, {
+          position: toast.POSITION.BOTTOM_RIGHT,
+        });
+        await signOut({ redirect: false });
+        router.push("/auth/signin");
+      } catch (error) {
+        console.log(error);
+      }
     }
   };
 

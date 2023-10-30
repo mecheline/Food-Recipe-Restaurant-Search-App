@@ -21,7 +21,7 @@ const Navigation = () => {
           <a className="text-decoration-none text-white">GetConnected</a>
         </Link>
         <button
-          className="navbar-toggler"
+          className="navbar-toggler bg-white"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarTogglerDemo02"
@@ -95,13 +95,21 @@ const Navigation = () => {
             )}
           </ul>
           <ul className="navbar-nav me-2 mb-2 mb-lg-0">
-           
             {session ? (
-              <li class="nav-item">
-                <button className="btn btn-danger" onClick={handleSignout}>
-                  Sign out
-                </button>
-              </li>
+              <>
+                <li className="nav-item px-2">
+                  <Link className="nav-link" href="/users" legacyBehavior>
+                    <span className="nav-link" style={{color:"#ccc"}}>
+                      signed in as {session.user.email}
+                    </span>
+                  </Link>
+                </li>
+                <li class="nav-item">
+                  <button className="btn btn-danger" onClick={handleSignout}>
+                    Sign out
+                  </button>
+                </li>
+              </>
             ) : (
               <li class="nav-item">
                 <Link href="/auth/signin" legacyBehavior>

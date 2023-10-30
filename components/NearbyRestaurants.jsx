@@ -72,7 +72,7 @@ export default function NearbyRestaurants() {
   };
 
   return (
-    <div>
+    <div className={styles.cover}>
       <form className={styles.main} onSubmit={searchRestaurant}>
         <div className={styles.form}>
           <input
@@ -112,22 +112,23 @@ export default function NearbyRestaurants() {
               </button>
             </Marker>
           ))}
-
-        {selectedPark ? (
-          <Popup
-            latitude={selectedPark.geometry.coordinates[1]}
-            longitude={selectedPark.geometry.coordinates[0]}
-            onClose={() => {
-              setSelectedPark(null);
-            }}
-          >
-            <div>
-              <h2>{selectedPark.properties.name}</h2>
-              <p>{selectedPark.properties.address_line2}</p>
-              <p>{Number(selectedPark.properties.distance) / 1000} km away</p>
-            </div>
-          </Popup>
-        ) : null}
+        <div className={styles.popup}>
+          {selectedPark ? (
+            <Popup
+              latitude={selectedPark.geometry.coordinates[1]}
+              longitude={selectedPark.geometry.coordinates[0]}
+              onClose={() => {
+                setSelectedPark(null);
+              }}
+            >
+              <div>
+                <h2>{selectedPark.properties.name}</h2>
+                <p>{selectedPark.properties.address_line2}</p>
+                <p>{Number(selectedPark.properties.distance) / 1000} km away</p>
+              </div>
+            </Popup>
+          ) : null}
+        </div>
       </ReactMapGL>
     </div>
   );

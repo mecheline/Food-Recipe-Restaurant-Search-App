@@ -1,8 +1,12 @@
 import Layout from "@/components/Layout";
-import Recipes from "@/components/Recipes";
+
 import connectDB from "@/lib/db";
 import Recipe from "@/models/recipe";
-import React from "react";
+
+import dynamic from "next/dynamic";
+const Recipes = dynamic(() => import("@/components/Recipes"), {
+  ssr: false,
+});
 
 const recipes = ({ data }) => {
   return (
