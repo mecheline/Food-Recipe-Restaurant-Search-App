@@ -1,0 +1,8 @@
+.lottie {
+  width: 100px;
+
+  z-index: -999;
+  position: fixed;
+  bottom:0;
+  right: 0;
+}

@@ -8,6 +8,7 @@ import data from "./data";
 
 import { useSession } from "next-auth/react";
 
+
 const Homepage = () => {
   const { data: session } = useSession();
   const router = useRouter();
@@ -55,6 +56,7 @@ const Homepage = () => {
 
   return (
     <>
+     
       <div className={styles.spread}>
         <form className={styles.main} onSubmit={getSearch}>
           <div className={styles.form}>

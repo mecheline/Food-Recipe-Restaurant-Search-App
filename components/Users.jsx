@@ -11,6 +11,7 @@ const Users = ({ data }) => {
   };
   return (
     <div>
+      
       <div className="text-center mb-5">
         <h5 className="text-muted fs-3">Registered users</h5>
         <h6 className="mt-3">#{data && data.length}</h6>

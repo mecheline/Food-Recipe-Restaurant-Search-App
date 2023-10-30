@@ -8,7 +8,7 @@ import { toast } from "react-toastify";
 const Signup = () => {
   const router = useRouter();
   const [fullname, setFullname] = useState("");
-  const [gender, setGender] = useState("");
+  const [gender, setGender] = useState("Male");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmpassword, setConfirmpassword] = useState("");
@@ -34,7 +34,9 @@ const Signup = () => {
         router.push("/auth/signin");
       }
     } catch (error) {
-      console.log(error);
+      return toast.error(error.response.data.error, {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
     }
   };
 
@@ -67,9 +69,7 @@ const Signup = () => {
             defaultValue={gender}
             onChange={(e) => setGender(e.target.value)}
           >
-            <option selected disabled>
-              ---Select---
-            </option>
+            
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>

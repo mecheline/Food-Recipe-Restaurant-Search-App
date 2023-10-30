@@ -42,10 +42,14 @@ const UserProfile = ({ data }) => {
         </div>
 
         <div className={styles.text}>
-          <h5 className="">{data.name}</h5>
-          <h6>{data.gender}</h6>
+          <h5 className="mb-3">{data.name}</h5>
+          {/* <h6>{data.gender}</h6> */}
           <div className={styles.email}>
-            <p className="">Email: </p>
+            <p className="fw-bolder">Gender: </p>
+            <p>{data.gender}</p>
+          </div>
+          <div className={styles.email}>
+            <p className="fw-bolder">Email: </p>
             <p>{data.email}</p>
           </div>
 
