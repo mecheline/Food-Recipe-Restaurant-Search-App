@@ -61,7 +61,7 @@ const Signup = () => {
             Gender
           </label>
           <select
-            class="form-select"
+            className="form-select"
             aria-label="Default select example"
             id="gender"
             defaultValue={gender}

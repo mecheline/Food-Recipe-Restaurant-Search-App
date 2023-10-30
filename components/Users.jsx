@@ -16,8 +16,8 @@ const Users = ({ data }) => {
         <h6 className="mt-3">#{data && data.length}</h6>
       </div>
 
-      <div class="table-responsive">
-        <table class="table">
+      <div className="table-responsive">
+        <table className="table">
           {data.length > 0 ? (
             <thead>
               <tr>

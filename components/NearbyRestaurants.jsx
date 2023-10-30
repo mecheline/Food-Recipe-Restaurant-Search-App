@@ -77,7 +77,7 @@ export default function NearbyRestaurants() {
         <div className={styles.form}>
           <input
             type="text"
-            class=""
+            className=""
             placeholder="Search a nearby restaurant"
             aria-describedby="search"
             value={query}
@@ -108,7 +108,7 @@ export default function NearbyRestaurants() {
                   setSelectedPark(restaurant);
                 }}
               >
-                <i class="bi bi-geo-alt-fill"></i>
+                <i className="bi bi-geo-alt-fill"></i>
               </button>
             </Marker>
           ))}

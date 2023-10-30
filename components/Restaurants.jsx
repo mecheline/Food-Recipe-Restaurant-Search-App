@@ -6,8 +6,8 @@ const Restaurants = ({ data }) => {
           See the restaurants searched by users within their location
         </h5>
       </div>
-      <div class="table-responsive">
-        <table class="table">
+      <div className="table-responsive">
+        <table className="table">
           {data.length > 0 ? (
             <thead>
               <tr>

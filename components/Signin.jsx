@@ -33,7 +33,7 @@ const Signin = () => {
   return (
     <div className={styles.main}>
       <div className="mb-3 text-center">
-        <i class="bi bi-house-door fs-1" onClick={() => router.push("/")}></i>
+        <i className="bi bi-house-door fs-1" onClick={() => router.push("/")}></i>
       </div>
       <form onSubmit={submitHandler}>
         <div className="card p-4 shadow">

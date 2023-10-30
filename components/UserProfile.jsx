@@ -30,7 +30,7 @@ const UserProfile = ({ data }) => {
     <div className={styles.main}>
       <div className="mb-3 text-center">
         <button onClick={() => router.back()} className={styles.button}>
-          <i class="bi bi-chevron-double-left"></i> Go Back
+          <i className="bi bi-chevron-double-left"></i> Go Back
         </button>
       </div>
       <div className={styles.container}>
@@ -41,17 +41,17 @@ const UserProfile = ({ data }) => {
           />
         </div>
 
-        <div class={styles.text}>
-          <h5 class="">{data.name}</h5>
+        <div className={styles.text}>
+          <h5 className="">{data.name}</h5>
           <h6>{data.gender}</h6>
           <div className={styles.email}>
-            <p class="">Email: </p>
+            <p className="">Email: </p>
             <p>{data.email}</p>
           </div>
 
           <a
             href="#"
-            class="btn btn-danger"
+            className="btn btn-danger"
             onClick={() => handleDelete(data.id)}
           >
             Deactivate account

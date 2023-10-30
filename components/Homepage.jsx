@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { useEffect, useState } from "react";
+import { useState } from "react";
 import styles from "../styles/Home.module.css";
 
 import { useRouter } from "next/router";
@@ -11,8 +11,6 @@ import { useSession } from "next-auth/react";
 const Homepage = () => {
   const { data: session } = useSession();
   const router = useRouter();
-  const [USD, setUSD] = useState("");
-  const [NGN, setNGN] = useState("");
   const [value, setValue] = useState(null);
 
   const [query, setQuery] = useState("");
@@ -40,53 +38,21 @@ const Homepage = () => {
     setQuery("");
   };
 
-  useEffect(() => {
-    const dollar = localStorage.getItem("USD");
-    if (dollar) {
-      setUSD(dollar);
-    }
-    const naira = localStorage.getItem("NGN");
-    if (naira) {
-      setNGN(naira);
-    }
-  });
+  const convertAmount = (amount) => {
+    const options = { method: "GET", headers: { accept: "application/json" } };
 
-  useEffect(() => {
-    setTimeout(() => {
-      getCurrency();
-    }, "1000");
-  }, []);
-
-  const getCurrency = async () => {
-    const res = await axios.get(
-      `http://api.exchangeratesapi.io/v1/latest?access_key=${process.env.NEXT_PUBLIC_EXCHANGERATES_API_KEY}`
-    );
-    console.log(res.data.rates.USD, res.data.rates.NGN);
-    localStorage.setItem("USD", JSON.stringify(res.data.rates.USD));
-    localStorage.setItem("NGN", JSON.stringify(res.data.rates.NGN));
-    setUSD(res.data.rates.USD);
-    setNGN(res.data.rates.NGN);
+    fetch(
+      `https://api.fastforex.io/convert?from=NGN&to=USD&amount=${amount}&api_key=${process.env.NEXT_PUBLIC_FAST_FOREX}`,
+      options
+    )
+      .then((response) => response.json())
+      .then((response) => {
+        setValue(response.result.USD);
+        console.log(response);
+      })
+      .catch((err) => console.error(err));
   };
 
-  const getPriceInUSD = async (label) => {
-    // await getCurrency();
-    const filteredRecipe = recipes
-      .filter((recipe) => recipe.recipe.label === label)
-      .map((item) => item.recipe.totalWeight)
-      .toString();
-    console.log(USD, NGN);
-
-    const convert = ((USD * filteredRecipe) / NGN).toFixed(2);
-
-    setValue(convert);
-    // return convert;
-  };
-  const getLocalPriceInUSD = (price) => {
-    const convert = ((USD * price) / NGN).toFixed(2);
-    console.log(convert);
-    setValue(convert);
-    // return convert;
-  };
   return (
     <>
       <div className={styles.spread}>
@@ -94,7 +60,7 @@ const Homepage = () => {
           <div className={styles.form}>
             <input
               type="text"
-              class=""
+              className=""
               placeholder="Enter your favorite recipe"
               aria-describedby="search"
               value={query}
@@ -113,32 +79,34 @@ const Homepage = () => {
         {recipes.length > 0
           ? recipes.map((recipe, index) => {
               return (
-                <div key={recipe.label} className={`card ${styles.innerCard}`}>
+                <div key={index} className={`card ${styles.innerCard}`}>
                   <div className={styles.spread}>
                     <div className={styles.image}>
                       <img
                         src={recipe.recipe.image}
-                        class="img-fluid rounded-start"
+                        className="img-fluid rounded-start"
                         alt="..."
                       />
                     </div>
                     <div className={styles.text}>
-                      <div class="card-body">
-                        <h5 class="card-title">{recipe.recipe.label}</h5>
-                        <p class="card-text">
+                      <div className="card-body">
+                        <h5 className="card-title">{recipe.recipe.label}</h5>
+                        <p className="card-text">
                           Calories: {recipe.recipe.calories.toFixed(2)}
                         </p>
-                        {/* <div className="d-flex flex-column justify-content-start align-items-start"> */}
+
                         <div className={styles.contain}>
-                          <h6 class="text-body-secondary fw-bolder">
+                          <h6 className="text-body-secondary fw-bolder">
                             ₦{Math.floor(recipe.recipe.totalWeight)}.00
                           </h6>
                           <button
                             type="button"
-                            class="btn btn-primary"
+                            className="btn btn-primary"
                             data-bs-toggle="modal"
                             data-bs-target="#exampleModal"
-                            onClick={() => getPriceInUSD(recipe.recipe.label)}
+                            onClick={() =>
+                              convertAmount(recipe.recipe.totalWeight)
+                            }
                           >
                             Price in USD
                           </button>
@@ -149,33 +117,33 @@ const Homepage = () => {
                 </div>
               );
             })
-          : data.map((item) => {
+          : data.map((item, index) => {
               return (
-                <div key={item.name} className={`card ${styles.innerCard}`}>
+                <div key={index} className={`card ${styles.innerCard}`}>
                   <div className={styles.spread}>
                     <div className={styles.image}>
                       <img
                         src={item.image}
-                        class="img-fluid rounded-start"
+                        className="img-fluid rounded-start"
                         alt="..."
                       />
                     </div>
                     <div className={styles.text}>
-                      <div class="card-body">
-                        <h5 class="card-title">{item.name}</h5>
-                        <p class="card-text">
+                      <div className="card-body">
+                        <h5 className="card-title">{item.name}</h5>
+                        <p className="card-text">
                           Calories: {item.calories.toFixed(2)}
                         </p>
                         <div className={styles.contain}>
-                          <h6 class="text-body-secondary fw-bolder">
+                          <h6 className="text-body-secondary fw-bolder">
                             ₦{Math.floor(item.price)}.00
                           </h6>
                           <button
                             type="button"
-                            class="btn btn-primary"
+                            className="btn btn-primary"
                             data-bs-toggle="modal"
                             data-bs-target="#exampleModal"
-                            onClick={() => getLocalPriceInUSD(item.price)}
+                            onClick={() => convertAmount(item.price)}
                           >
                             Price in USD
                           </button>
@@ -188,27 +156,27 @@ const Homepage = () => {
             })}
       </div>
       <div
-        class="modal fade"
+        className="modal fade"
         id="exampleModal"
         tabindex="-1"
         aria-labelledby="exampleModalLabel"
         aria-hidden="true"
       >
-        <div class="modal-dialog">
-          <div class="modal-content">
-            <div class="modal-header">
-              <h1 class="modal-title fs-5" id="exampleModalLabel">
+        <div className="modal-dialog">
+          <div className="modal-content">
+            <div className="modal-header">
+              <h1 className="modal-title fs-5" id="exampleModalLabel">
                 Price in Dollar
               </h1>
               <button
                 type="button"
-                class="btn-close"
+                className="btn-close"
                 data-bs-dismiss="modal"
                 aria-label="Close"
               ></button>
             </div>
-            <div class="modal-body">
-              <h4>${value && value}</h4>
+            <div className="modal-body">
+              <h4>${value}</h4>
             </div>
           </div>
         </div>

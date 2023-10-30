@@ -29,11 +29,11 @@ const Profile = () => {
     <div className={styles.main}>
       <div className="mb-3 text-center">
         {/* <i
-          class="bi bi-skip-backward-fill fs-1"
+          className="bi bi-skip-backward-fill fs-1"
           onClick={() => router.back()}
         ></i> */}
         <button onClick={() => router.back()} className={styles.button}>
-          <i class="bi bi-chevron-double-left"></i> Go Back
+          <i className="bi bi-chevron-double-left"></i> Go Back
         </button>
       </div>
       <div className={styles.container}>
@@ -41,17 +41,17 @@ const Profile = () => {
           <img src="./images/avatar.jpg" alt="..." />
         </div>
 
-        <div class={styles.text}>
-          <h5 class="">{session.user.fullname}</h5>
+        <div className={styles.text}>
+          <h5 className="">{session.user.fullname}</h5>
           <h6>{session.user.gender}</h6>
           <div className={styles.email}>
-            <p class="">Email: </p>
+            <p className="">Email: </p>
             <p>{session.user.email}</p>
           </div>
 
           <a
             href="#"
-            class="btn btn-danger"
+            className="btn btn-danger"
             onClick={() => handleDelete(session.user.id)}
           >
             Deactivate account

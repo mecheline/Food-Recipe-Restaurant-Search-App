@@ -113,14 +113,14 @@ const Navigation = () => {
                     </span>
                   </Link>
                 </li>
-                <li class="nav-item">
+                <li className="nav-item">
                   <button className="btn btn-danger" onClick={handleSignout}>
                     Sign out
                   </button>
                 </li>
               </>
             ) : (
-              <li class="nav-item">
+              <li className="nav-item">
                 <Link href="/auth/signin" legacyBehavior>
                   <a
                     className={

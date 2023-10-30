@@ -9,8 +9,8 @@ const Recipes = ({ data }) => {
           See how users searched their favorite recipes
         </h5>
       </div>
-      <div class="table-responsive">
-        <table class="table">
+      <div className="table-responsive">
+        <table className="table">
           {data.length > 0 ? (
             <thead>
               <tr>
