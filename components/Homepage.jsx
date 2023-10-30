@@ -10,8 +10,7 @@ const Homepage = () => {
   const router = useRouter();
   const [USD, setUSD] = useState("");
   const [NGN, setNGN] = useState("");
-  const [value, setValue] = useState("");
-  console.log(value);
+  const [value, setValue] = useState(null);
 
   const [query, setQuery] = useState("");
   const [recipes, setRecipes] = useState([]);
@@ -48,15 +47,14 @@ const Homepage = () => {
   });
 
   useEffect(() => {
-    const interval = setInterval(() => {
+    setTimeout(() => {
       getCurrency();
-    }, 86400);
-    return () => clearInterval(interval);
+    }, "1000");
   }, []);
 
   const getCurrency = async () => {
     const res = await axios.get(
-      `https://api.exchangeratesapi.io/v1/latest?access_key=${process.env.NEXT_PUBLIC_EXCHANGERATES_API_KEY}`
+      `http://api.exchangeratesapi.io/v1/latest?access_key=${process.env.NEXT_PUBLIC_EXCHANGERATES_API_KEY}`
     );
     console.log(res.data.rates.USD, res.data.rates.NGN);
     localStorage.setItem("USD", JSON.stringify(res.data.rates.USD));
@@ -65,26 +63,23 @@ const Homepage = () => {
     setNGN(res.data.rates.NGN);
   };
 
-  const getPriceInUSD = (label) => {
+  const getPriceInUSD = async (label) => {
+    // await getCurrency();
     const filteredRecipe = recipes
       .filter((recipe) => recipe.recipe.label === label)
       .map((item) => item.recipe.totalWeight)
       .toString();
-    calcPrice(filteredRecipe);
+    console.log(USD, NGN);
 
-    // const convert = USD * filteredRecipe;
-    // const result = convert / NGN;
-    // console.log(result);
-    // setValue(result);
-  };
+    const convert = ((USD * filteredRecipe) / NGN).toFixed(2);
 
-  const calcPrice = (filteredRecipe) => {
-    console.log(filteredRecipe, USD, NGN);
+    setValue(convert);
+    // return convert;
   };
   const getLocalPriceInUSD = (price) => {
     const convert = ((USD * price) / NGN).toFixed(2);
     console.log(convert);
-    setValue(Number(convert));
+    setValue(convert);
     // return convert;
   };
   return (
@@ -213,7 +208,7 @@ const Homepage = () => {
               ></button>
             </div>
             <div class="modal-body">
-              <h4>${value}</h4>
+              <h4>${value && value}</h4>
             </div>
           </div>
         </div>
