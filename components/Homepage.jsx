@@ -47,40 +47,16 @@ const Homepage = () => {
     }
   });
 
-  const getPriceInUSD = (label) => {
-    const filteredRecipe = recipes
-      .filter((recipe) => recipe.recipe.label === label)
-      .map((item) => item.recipe.totalWeight)
-      .toString();
-    // const filteredRecipeToNumber = parseFloat(filteredRecipe);
-    // const dollar = parseFloat(USD);
-    // const naira = parseFloat(NGN);
-
-    console.log(USD);
-    console.log(NGN);
-    console.log(filteredRecipe);
-
-    // const convert = (dollar * filteredRecipeToNumber) / naira;
-    const convert = +(USD * filteredRecipe);
-    console.log(convert);
-    setValue(convert);
-
-    // console.log(convert, "convert");
-    // setValue(300);
-    // console.log(value,"value");
-    // return convert;
-  };
-
   useEffect(() => {
-    // const interval = setInterval(() => {
-    getCurrency();
-    // }, 86400);
-    // return () => clearInterval(interval);
-  }, [getPriceInUSD]);
+    const interval = setInterval(() => {
+      getCurrency();
+    }, 86400);
+    return () => clearInterval(interval);
+  }, []);
 
   const getCurrency = async () => {
     const res = await axios.get(
-      `http://api.exchangeratesapi.io/v1/latest?access_key=${process.env.NEXT_PUBLIC_EXCHANGERATES_API_KEY}`
+      `https://api.exchangeratesapi.io/v1/latest?access_key=${process.env.NEXT_PUBLIC_EXCHANGERATES_API_KEY}`
     );
     console.log(res.data.rates.USD, res.data.rates.NGN);
     localStorage.setItem("USD", JSON.stringify(res.data.rates.USD));
@@ -89,6 +65,21 @@ const Homepage = () => {
     setNGN(res.data.rates.NGN);
   };
 
+  const getPriceInUSD = (label) => {
+    const filteredRecipe = recipes
+      .filter((recipe) => recipe.recipe.label === label)
+      .map((item) => item.recipe.totalWeight)
+      .toString();
+    
+
+    // const convert = (dollar * filteredRecipeToNumber) / naira;
+    const convert = USD * filteredRecipe;
+    const result = convert / NGN;
+    console.log(result);
+    setValue(result);
+
+   
+  };
   const getLocalPriceInUSD = (price) => {
     const convert = ((USD * price) / NGN).toFixed(2);
     console.log(convert);
