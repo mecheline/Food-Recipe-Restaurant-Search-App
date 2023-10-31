@@ -43,26 +43,26 @@ export default function NearbyRestaurants() {
     //    console.log(`Latitude: ${latitude}, Longitude: ${longitude}`);
 
     const res = await axios.get(
-      `https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle:${longitude},${latitude},20000&bias=proximity:${longitude},${latitude}&limit=20&apiKey=${process.env.NEXT_PUBLIC_GEOIFY_API_KEY}`
+      `https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle:${longitude},${latitude},14000&bias=proximity:${longitude},${latitude}&limit=40&apiKey=${process.env.NEXT_PUBLIC_GEOIFY_API_KEY}`
     );
-    console.log(res.data.features);
+    // console.log(res.data.features);
     setRestaurants(res.data.features);
   };
 
   const searchRestaurant = async (e) => {
     e.preventDefault();
-     if (!query || query.trim() == "") {
-       return toast.error("Please input any restaurant within your city", {
-         position: toast.POSITION.BOTTOM_RIGHT,
-       });
-     }
+    if (!query || query.trim() == "") {
+      return toast.error("Please input any restaurant within your city", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+    }
     const res = await axios.get(
-      `https://api.geoapify.com/v2/places?name=${query}&categories=catering.restaurant&filter=circle:${longitude},${latitude},20000&bias=proximity:${longitude},${latitude}&limit=20&apiKey=${process.env.NEXT_PUBLIC_GEOIFY_API_KEY}`
+      `https://api.geoapify.com/v2/places?name=${query}&categories=catering,catering.restaurant&filter=circle:${longitude},${latitude},49000&bias=proximity:${longitude},${latitude}&limit=40&apiKey=${process.env.NEXT_PUBLIC_GEOIFY_API_KEY}`
     );
-    console.log(res.data.features);
+    // console.log(res.data.features);
     if (res.data.features.length <= 0) {
-      console.log("Restaurant is no within your city");
-      toast.error("Restaurant is not within your city", {
+      // console.log("Restaurant is no within your location");
+      toast.error("Restaurant is not within your location", {
         position: toast.POSITION.BOTTOM_RIGHT,
       });
       return;
@@ -72,7 +72,7 @@ export default function NearbyRestaurants() {
   };
 
   const postRecipe = async () => {
-    console.log(query);
+    // console.log(query);
     await axios.post("/api/restaurantstore", { query });
   };
 
@@ -100,9 +100,9 @@ export default function NearbyRestaurants() {
         }}
       >
         {restaurants &&
-          restaurants.map((restaurant) => (
+          restaurants.map((restaurant, index) => (
             <Marker
-              key={restaurant.properties.name}
+              key={index}
               latitude={restaurant.geometry.coordinates[1]}
               longitude={restaurant.geometry.coordinates[0]}
             >

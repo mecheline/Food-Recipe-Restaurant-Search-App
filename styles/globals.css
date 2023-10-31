@@ -108,12 +108,29 @@ a {
 
 .active {
   color: wheat !important ;
-  
 }
 
-tr{
+tr {
   cursor: pointer;
 }
-.navbar-brand{
-  font-family: 'Grand Hotel', cursive !important;
+.navbar-brand {
+  font-family: "Grand Hotel", cursive !important;
+}
+
+.modal .modal-dialog .modal-content {
+  background-color: #630163;
+  width: max-content;
+}
+
+.modal .modal-dialog .modal-content .modal-header h1 {
+  text-align: center !important;
+  color: white;
+  margin-right: 2rem;
+}
+.modal .modal-dialog .modal-content .modal-header button {
+  background-color: white;
+}
+.modal .modal-dialog .modal-content .modal-body h4 {
+  text-align: center !important;
+  color: white;
 }
