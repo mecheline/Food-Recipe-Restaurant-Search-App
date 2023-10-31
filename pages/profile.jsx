@@ -1,6 +1,6 @@
 import Layout from "@/components/Layout";
 
-import { getSession, useSession } from "next-auth/react";
+import { getSession } from "next-auth/react";
 
 import dynamic from "next/dynamic";
 const Profile = dynamic(() => import("@/components/Profile"), {
@@ -8,16 +8,16 @@ const Profile = dynamic(() => import("@/components/Profile"), {
 });
 
 const profile = () => {
-  const { data: session } = useSession();
-  console.log(session);
-  if (session) {
+  // const { data: session } = useSession();
+  // console.log(session);
+  // if (session) {
     return (
       <Layout>
         <Profile />
       </Layout>
     );
   }
-};
+// };
 export default profile;
 
 export async function getServerSideProps(ctx) {

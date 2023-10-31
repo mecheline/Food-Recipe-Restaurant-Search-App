@@ -3,7 +3,7 @@ import { useRouter } from "next/router";
 import NewPassword from "@/components/NewPassword";
 
 
-const token = () => {
+const Token = () => {
   const router = useRouter();
   const { token } = router.query;
   console.log(token);
@@ -15,4 +15,4 @@ const token = () => {
   );
 };
 
-export default token;
+export default Token;
