@@ -32,10 +32,10 @@ export default async function resetPassword(req, res) {
       if (!result) {
         return res.status(501).json({ error: "Try again later" });
       }
-      resetPasswordEmail(token, email);
+      await resetPasswordEmail(token, email);
       res.status(200).json({
         message: "Check your email to reset your password",
-        result,
+        // result,
       });
     });
   } catch (error) {
