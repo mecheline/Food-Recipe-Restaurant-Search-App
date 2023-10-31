@@ -3,6 +3,7 @@ import nodemailer from "nodemailer";
 export const confirmationLinkEmail = async (token, email) => {
   let transporter = nodemailer.createTransport({
     service: "gmail",
+    port: 465,
     auth: {
       user: process.env.USER, // generated ethereal user
       pass: process.env.PASS, // generated ethereal password
@@ -42,6 +43,7 @@ export const confirmationLinkEmail = async (token, email) => {
 export const resetPasswordEmail = async (token, email) => {
   let transporter = nodemailer.createTransport({
     service: "gmail",
+    port: 465,
     auth: {
       user: process.env.USER, // generated ethereal user
       pass: process.env.PASS, // generated ethereal password
