@@ -1,6 +1,6 @@
 import { Schema, models, model } from "mongoose";
 
-const userSchema = Schema({
+const pendingUserSchema = Schema({
   fullname: {
     type: String,
     trim: true,
@@ -11,14 +11,12 @@ const userSchema = Schema({
     trim: true,
     required: true,
   },
-
   email: {
     type: String,
     trim: true,
     required: true,
     unique: true,
   },
-
   password: {
     type: String,
     trim: true,
@@ -27,12 +25,9 @@ const userSchema = Schema({
   resetToken: {
     type: String,
   },
-  expireToken: {
-    type: Date,
-  },
   isAdmin: {
     type: Boolean,
   },
 });
 
-export default models.User || model("User", userSchema);
+export default models.pendingUser || model("pendingUser", pendingUserSchema);

@@ -33,7 +33,10 @@ const Signin = () => {
   return (
     <div className={styles.main}>
       <div className="mb-3 text-center">
-        <i className="bi bi-house-door fs-1" onClick={() => router.push("/")}></i>
+        <i
+          className="bi bi-house-door fs-1"
+          onClick={() => router.push("/")}
+        ></i>
       </div>
       <form onSubmit={submitHandler}>
         <div className="card p-4 shadow">
@@ -70,12 +73,23 @@ const Signin = () => {
           <button type="submit" className={styles.button}>
             Signin
           </button>
-          <small className="mt-2">
-            Don&lsquo;t have an account?{" "}
-            <Link href="/auth/signup" legacyBehavior>
-              <a className="text-decoration-none text-black fw-bold">Signup</a>
-            </Link>
-          </small>
+          <div className="d-flex justify-content-between mt-3">
+            <small className="mt-2">
+              Don&lsquo;t have an account?{" "}
+              <Link href="/auth/signup" legacyBehavior>
+                <a className="text-decoration-none text-black fw-bold">
+                  Signup
+                </a>
+              </Link>
+            </small>
+            <small className="mt-2">
+              <Link href="/forget-password" legacyBehavior>
+                <a className="text-decoration-none text-black fw-bold">
+                  Forget Password
+                </a>
+              </Link>
+            </small>
+          </div>
         </div>
       </form>
     </div>

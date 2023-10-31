@@ -1,13 +1,17 @@
 import connectDB from "@/lib/db";
+import pendingUser from "@/models/pendingUser";
 import User from "@/models/user";
+import { confirmationLinkEmail } from "@/nodemailer/mail";
 
 import { hash } from "bcrypt";
+
+const crypto = require("crypto");
 
 export default async function signup(req, res) {
   await connectDB();
   if (req.method == "POST") {
-    console.log(req.body)
-    const { fullname,gender, email, password } = req.body;
+    console.log(req.body);
+    const { fullname, gender, email, password } = req.body;
     if (
       !fullname ||
       fullname.trim().length < 0 ||
@@ -22,24 +26,34 @@ export default async function signup(req, res) {
     }
     try {
       const user = await User.findOne({ email });
-
-      if (user) {
+      const pendinguser = await pendingUser.findOne({ email });
+      if (user || pendinguser) {
         return res
           .status(422)
           .json({ error: "User with the email already exists" });
       }
+      let token;
+      crypto.randomBytes(127, (err, buf) => {
+        if (err) {
+          console.log(err);
+          return;
+        }
 
-      const newUser = new User({
+        // Prints random bytes of generated data
+        token = buf.toString("hex");
+      });
+      const newUser = new pendingUser({
         fullname,
         gender,
         email,
-        password: await hash(password, 12),
         isAdmin: false,
+        password: await hash(password, 12),
+        resetToken: token,
       });
       const result = await newUser.save();
-
+      confirmationLinkEmail(result.resetToken, result.email);
       res.status(200).json({
-        message: "User successfully created",
+        message: "Check your email to activate your account",
         result,
       });
     } catch (error) {

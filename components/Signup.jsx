@@ -30,13 +30,15 @@ const Signup = () => {
     try {
       const res = await axios.post("/api/signup", data);
       console.log(res.data);
-      if (res.status === 200) {
-        router.push("/auth/signin");
-      }
+      // if (res.status === 200) {
+      //   router.push("/auth/signin");
+      // }
+      toast.success(res.data.message);
     } catch (error) {
-      return toast.error(error.response.data.error, {
-        position: toast.POSITION.BOTTOM_RIGHT,
-      });
+      console.log(error);
+      // return toast.error(error.response.data.error, {
+      //   position: toast.POSITION.BOTTOM_RIGHT,
+      // });
     }
   };
 
@@ -69,7 +71,6 @@ const Signup = () => {
             defaultValue={gender}
             onChange={(e) => setGender(e.target.value)}
           >
-            
             <option value="male">Male</option>
             <option value="female">Female</option>
           </select>
