@@ -2,7 +2,7 @@ import connectDB from "@/lib/db";
 import pendingUser from "@/models/pendingUser";
 import User from "@/models/user";
 import { confirmationLinkEmail } from "@/nodemailer/mail";
-import { Resend } from "resend";
+// import { Resend } from "resend";
 
 import { hash } from "bcrypt";
 
