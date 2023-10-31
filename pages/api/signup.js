@@ -54,7 +54,7 @@ export default async function signup(req, res) {
       confirmationLinkEmail(result.resetToken, result.email);
       res.status(200).json({
         message: "Check your email to activate your account",
-        result,
+        // result,
       });
     } catch (error) {
       console.log(error);
