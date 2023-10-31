@@ -51,6 +51,11 @@ export default function NearbyRestaurants() {
 
   const searchRestaurant = async (e) => {
     e.preventDefault();
+     if (!query || query.trim() == "") {
+       return toast.error("Please input any restaurant within your city", {
+         position: toast.POSITION.BOTTOM_RIGHT,
+       });
+     }
     const res = await axios.get(
       `https://api.geoapify.com/v2/places?name=${query}&categories=catering.restaurant&filter=circle:${longitude},${latitude},20000&bias=proximity:${longitude},${latitude}&limit=20&apiKey=${process.env.NEXT_PUBLIC_GEOIFY_API_KEY}`
     );

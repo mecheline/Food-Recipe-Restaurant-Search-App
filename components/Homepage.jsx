@@ -7,7 +7,7 @@ import { useRouter } from "next/router";
 import data from "./data";
 
 import { useSession } from "next-auth/react";
-
+import { toast } from "react-toastify";
 
 const Homepage = () => {
   const { data: session } = useSession();
@@ -34,6 +34,11 @@ const Homepage = () => {
 
   const getSearch = (e) => {
     e.preventDefault();
+    if (!query || query.trim() == "") {
+      return toast.error("Please input your favorite recipe ", {
+        position: toast.POSITION.BOTTOM_RIGHT,
+      });
+    }
     getRecipes();
     postRecipe();
     setQuery("");
@@ -56,7 +61,6 @@ const Homepage = () => {
 
   return (
     <>
-     
       <div className={styles.spread}>
         <form className={styles.main} onSubmit={getSearch}>
           <div className={styles.form}>
