@@ -27,7 +27,7 @@ const Navigation = () => {
           </a>
         </Link>
         <button
-          className="navbar-toggler bg-white"
+          className="navbar-toggler"
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#navbarTogglerDemo02"

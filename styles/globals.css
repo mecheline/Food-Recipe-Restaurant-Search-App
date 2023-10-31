@@ -105,7 +105,15 @@ a {
     color-scheme: dark;
   }
 }
-
+button.navbar-toggler {
+  padding: 0;
+  border: none;
+}
+span.navbar-toggler-icon {
+  background-color: white !important;
+  border: none;
+  opacity: 0.5;
+}
 .active {
   color: wheat !important ;
 }
