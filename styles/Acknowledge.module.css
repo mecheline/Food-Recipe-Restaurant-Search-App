@@ -1,0 +1,30 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  row-gap: 4rem;
+  max-height: 100vh;
+  margin: 15vw auto;
+}
+
+.main h1 {
+  color: #630163;
+}
+.main button {
+  padding: 16px 32px;
+  border-radius: 8px;
+  background-color: white;
+  font-size: 40px;
+  color: #630163;
+  border: 1px solid #630163;
+  font-weight: 700;
+}
+.main button:hover {
+  background-color: #630163;
+  color: white;
+}
+
+.lottie {
+  width: 100px;
+}

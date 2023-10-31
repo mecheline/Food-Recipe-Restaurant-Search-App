@@ -1,6 +1,10 @@
 import axios from "axios";
 import Link from "next/link";
-import React, { useEffect } from "react";
+import styles from "../styles/Acknowledge.module.css";
+import Slide from "react-reveal/Slide";
+import Lottie from "lottie-react";
+import Complete from "../Complete.json";
+
 
 const Acknowledge = ({ token }) => {
   console.log(token);
@@ -19,12 +23,15 @@ const Acknowledge = ({ token }) => {
   }
 
   return (
-    <div className="mx-auto w-50 mt-5 text-center">
-      <h1 className="mb-5 text-success">Verification Complete</h1>
+    <div className={styles.main}>
+      <h1>Verification Complete</h1>
+      <div className={styles.lottie}>
+        <Slide top>
+          <Lottie animationData={Complete} />
+        </Slide>
+      </div>
       <Link href="/auth/signin" legacyBehavior>
-        <button className="btn btn-outline-success w-50  rounded-5 fs-1">
-          Sign in
-        </button>
+        <button>Sign in</button>
       </Link>
     </div>
   );
