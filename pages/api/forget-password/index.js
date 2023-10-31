@@ -25,14 +25,14 @@ export default async function resetPassword(req, res) {
       if (err) {
         console.log(err);
       }
-      const token = buffer.toString("hex");
+      const token =  buffer.toString("hex");
       record.resetToken = token;
       record.expireToken = Date.now() + 3600000;
       const result = await record.save();
       if (!result) {
         return res.status(501).json({ error: "Try again later" });
       }
-      await resetPasswordEmail(token, result.email);
+      await resetPasswordEmail(result.resetToken, result.email);
       res.status(200).json({
         message: "Check your email to reset your password",
         // result,

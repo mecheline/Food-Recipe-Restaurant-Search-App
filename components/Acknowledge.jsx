@@ -5,7 +5,6 @@ import Slide from "react-reveal/Slide";
 import Lottie from "lottie-react";
 import Complete from "../Complete.json";
 
-
 const Acknowledge = ({ token }) => {
   console.log(token);
 
@@ -24,7 +23,7 @@ const Acknowledge = ({ token }) => {
 
   return (
     <div className={styles.main}>
-      <h1>Verification Complete</h1>
+      <h1>Activation Complete</h1>
       <div className={styles.lottie}>
         <Slide top>
           <Lottie animationData={Complete} />
