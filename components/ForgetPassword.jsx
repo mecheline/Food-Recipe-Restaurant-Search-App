@@ -2,7 +2,7 @@ import axios from "axios";
 import { useRouter } from "next/router";
 import React, { useState } from "react";
 import { toast } from "react-toastify";
-import styles from "../styles/ForgotPassword.module.css"
+import styles from "../styles/ForgotPassword.module.css";
 
 const ForgetPassword = () => {
   const router = useRouter();
@@ -12,10 +12,7 @@ const ForgetPassword = () => {
     e.preventDefault();
     console.log(email);
     try {
-      const response = await axios.post(
-        "http://localhost:3000/api/forget-password",
-        { email }
-      );
+      const response = await axios.post("/api/forget-password", { email });
       console.log(response.data);
       toast.success(response.data.message);
     } catch (error) {
@@ -25,7 +22,6 @@ const ForgetPassword = () => {
   };
   return (
     <div className={styles.main}>
-      
       <form onSubmit={submitHandler}>
         <div className="card p-4 shadow">
           <h3 className="text-center pb-5">Enter your Email</h3>
@@ -46,11 +42,10 @@ const ForgetPassword = () => {
               We&lsquo;ll never share your email with anyone else.
             </div>
           </div>
-         
+
           <button type="submit" className={styles.button}>
             Submit
           </button>
-         
         </div>
       </form>
     </div>

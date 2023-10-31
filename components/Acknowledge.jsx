@@ -7,9 +7,7 @@ const Acknowledge = ({ token }) => {
 
   const fetchData = async (token) => {
     try {
-      const response = await axios.get(
-        `http://localhost:3000/api/activate/${token}`
-      );
+      const response = await axios.get(`/api/activate/${token}`);
       console.log(response.data);
     } catch (error) {
       console.log(error);
