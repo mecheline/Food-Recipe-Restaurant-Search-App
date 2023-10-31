@@ -14,7 +14,7 @@ export const confirmationLinkEmail = async (token, email) => {
     from: process.env.USER, // sender address
     to: email, // list of receivers
     subject: "Verify Email Link", // Subject line
-    html: `<a target="_" href="${process.env.NEXTAUTH_URL}/verify-email/${token}">Click on the link to confirm your email</a>`,
+    html: `<a target="_" href="${process.env.NEXTAUTH_URL}/verify-email/${token}">Click on the link to activate your account</a>`,
   };
 
   await new Promise((resolve, reject) => {
