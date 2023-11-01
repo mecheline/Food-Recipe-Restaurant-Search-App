@@ -10,7 +10,10 @@ const Recipes = dynamic(() => import("@/components/Recipes"), {
 
 const recipes = ({ data }) => {
   return (
-    <Layout>
+    <Layout
+      title="Recipe"
+      description="The recipe page shows all the search recipes in the application"
+    >
       <Recipes data={data} />
     </Layout>
   );

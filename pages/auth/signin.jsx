@@ -4,7 +4,10 @@ import React from "react";
 
 const signin = () => {
   return (
-    <Layout>
+    <Layout
+      title="Sign in"
+      description="Sign in Page of the food recipe application"
+    >
       <Signin />
     </Layout>
   );

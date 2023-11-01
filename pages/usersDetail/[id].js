@@ -11,7 +11,10 @@ const UserProfile = dynamic(() => import("@/components/UserProfile"), {
 
 const id = ({ data }) => {
   return (
-    <Layout>
+    <Layout
+      title="Home"
+      description="The profile page of registered in users "
+    >
       <UserProfile data={data} />
     </Layout>
   );

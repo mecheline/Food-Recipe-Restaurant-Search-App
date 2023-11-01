@@ -4,9 +4,10 @@ const nextConfig = {
   eslint: {
     ignoreDuringBuilds: true,
   },
-  domains: {
-    images: ["edamam-product-images.s3.amazonaws.com"],
+  images: {
+    domains: ["edamam-product-images.s3.amazonaws.com"],
   },
+  
 };
 
 module.exports = nextConfig;

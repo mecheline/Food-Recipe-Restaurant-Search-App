@@ -45,7 +45,7 @@ export default function NearbyRestaurants() {
     const res = await axios.get(
       `https://api.geoapify.com/v2/places?categories=catering.restaurant&filter=circle:${longitude},${latitude},14000&bias=proximity:${longitude},${latitude}&limit=40&apiKey=${process.env.NEXT_PUBLIC_GEOIFY_API_KEY}`
     );
-    // console.log(res.data.features);
+    console.log(res.data.features);
     setRestaurants(res.data.features);
   };
 

@@ -3,7 +3,10 @@ import Signup from "@/components/Signup";
 
 const signup = () => {
   return (
-    <Layout>
+    <Layout
+      title="Sign up"
+      description="Sign up Page of the food recipe application"
+    >
       <Signup />
     </Layout>
   );

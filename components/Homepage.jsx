@@ -8,6 +8,7 @@ import data from "./data";
 
 import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
+import Image from "next/image";
 
 const Homepage = () => {
   const { data: session } = useSession();
@@ -27,9 +28,11 @@ const Homepage = () => {
   };
 
   const getRecipes = async () => {
-    const res = await axios.get(`/api/searchrecipes/${query}`);
-    console.log(res.data.hits);
-    setRecipes(res.data.hits);
+    try {
+      const res = await axios.get(`/api/searchrecipes/${query}`);
+      console.log(res.data.hits);
+      setRecipes(res.data.hits);
+    } catch (error) {}
   };
 
   const getSearch = (e) => {
@@ -88,7 +91,9 @@ const Homepage = () => {
                 <div key={index} className={`card ${styles.innerCard}`}>
                   <div className={styles.spread}>
                     <div className={styles.image}>
-                      <img
+                      <Image
+                        width={200}
+                        height={200}
                         src={recipe.recipe.image}
                         className="img-fluid rounded-start"
                         alt="..."
@@ -128,7 +133,9 @@ const Homepage = () => {
                 <div key={index} className={`card ${styles.innerCard}`}>
                   <div className={styles.spread}>
                     <div className={styles.image}>
-                      <img
+                      <Image
+                        width={200}
+                        height={200}
                         src={item.image}
                         className="img-fluid rounded-start"
                         alt="..."

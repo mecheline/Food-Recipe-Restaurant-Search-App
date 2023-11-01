@@ -17,7 +17,10 @@ export default function Home() {
   console.log(session);
   if (session) {
     return (
-      <Layout>
+      <Layout
+        title="Home"
+        description="An application whereby users can search for their favorite recipe and restaurants within their city"
+      >
         <Homepage />
       </Layout>
     );

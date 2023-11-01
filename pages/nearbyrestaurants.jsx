@@ -10,7 +10,10 @@ const NearbyRestaurants = dynamic(
 
 const nearbyrestaurants = () => {
   return (
-    <Layout>
+    <Layout
+      title="Nearby Restaurants"
+      description="The nearby restaurant page shows all the restaurants within the location of the user in the application"
+    >
       <NearbyRestaurants />
     </Layout>
   );

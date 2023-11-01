@@ -10,7 +10,10 @@ const Restaurants = dynamic(() => import("@/components/Restaurants"), {
 
 const RestaurantPage = ({ data }) => {
   return (
-    <Layout>
+    <Layout
+      title="Restaurants"
+      description="The restaurant page shows all the search restaurants within the city in the application"
+    >
       <Restaurants data={data} />
     </Layout>
   );

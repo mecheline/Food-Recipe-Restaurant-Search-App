@@ -10,7 +10,7 @@ const Users = dynamic(() => import("@/components/Users"), {
 
 const users = ({ data }) => {
   return (
-    <Layout>
+    <Layout title="Users" description="The users page shows all the registered users in the application">
       <Users data={data} />
     </Layout>
   );

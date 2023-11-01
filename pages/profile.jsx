@@ -12,7 +12,10 @@ const profile = () => {
   // console.log(session);
   // if (session) {
     return (
-      <Layout>
+      <Layout
+        title="Profile"
+        description="The profile page shows the profile details of logged in users"
+      >
         <Profile />
       </Layout>
     );
