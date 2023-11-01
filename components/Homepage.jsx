@@ -1,6 +1,6 @@
 import axios from "axios";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import styles from "../styles/Home.module.css";
 
 import { useRouter } from "next/router";
@@ -9,6 +9,7 @@ import data from "./data";
 import { useSession } from "next-auth/react";
 import { toast } from "react-toastify";
 import Image from "next/image";
+import Loading from "./Loading";
 
 const Homepage = () => {
   const { data: session } = useSession();
@@ -16,23 +17,39 @@ const Homepage = () => {
   const [value, setValue] = useState(null);
 
   const [query, setQuery] = useState("");
+  const [loading, setLoading] = useState(false);
   const [recipes, setRecipes] = useState([]);
 
   console.log(recipes);
 
+  useEffect(() => {
+    const localItem = localStorage.getItem("searchedItem");
+    if (localItem) {
+      setLoading(true);
+      getRecipes(localItem);
+    }
+  }, []);
+
   const postRecipe = async () => {
+    localStorage.setItem("searchedItem", JSON.stringify(query));
     console.log(query);
     if (!session.user.isAdmin) {
       await axios.post("/api/store", { query });
     }
   };
 
-  const getRecipes = async () => {
+  const getRecipes = async (localItem) => {
+    setLoading(true);
     try {
-      const res = await axios.get(`/api/searchrecipes/${query}`);
+      const res = await axios.get(
+        `/api/searchrecipes/${query ? query : localItem}`
+      );
       console.log(res.data.hits);
       setRecipes(res.data.hits);
-    } catch (error) {}
+      setLoading(false);
+    } catch (error) {
+      console.log(error);
+    }
   };
 
   const getSearch = (e) => {
@@ -85,88 +102,92 @@ const Homepage = () => {
         </div>
       </div>
       <div className={styles.cards}>
-        {recipes.length > 0
-          ? recipes.map((recipe, index) => {
-              return (
-                <div key={index} className={`card ${styles.innerCard}`}>
-                  <div className={styles.spread}>
-                    <div className={styles.image}>
-                      <Image
-                        width={200}
-                        height={200}
-                        src={recipe.recipe.image}
-                        className="img-fluid rounded-start"
-                        alt="..."
-                      />
-                    </div>
-                    <div className={styles.text}>
-                      <div className="card-body">
-                        <h5 className="card-title">{recipe.recipe.label}</h5>
-                        <p className="card-text">
-                          Calories: {recipe.recipe.calories.toFixed(2)}
-                        </p>
+        {loading ? (
+          <Loading />
+        ) : recipes.length > 0 ? (
+          recipes.map((recipe, index) => {
+            return (
+              <div key={index} className={`card ${styles.innerCard}`}>
+                <div className={styles.spread}>
+                  <div className={styles.image}>
+                    <Image
+                      width={200}
+                      height={200}
+                      src={recipe.recipe.image}
+                      className="img-fluid rounded-start"
+                      alt="..."
+                    />
+                  </div>
+                  <div className={styles.text}>
+                    <div className="card-body">
+                      <h5 className="card-title">{recipe.recipe.label}</h5>
+                      <p className="card-text">
+                        Calories: {recipe.recipe.calories.toFixed(2)}
+                      </p>
 
-                        <div className={styles.contain}>
-                          <h6 className="text-body-secondary fw-bolder">
-                            ₦{Math.floor(recipe.recipe.totalWeight)}.00
-                          </h6>
-                          <button
-                            type="button"
-                            className="btn btn-primary"
-                            data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"
-                            onClick={() =>
-                              convertAmount(recipe.recipe.totalWeight)
-                            }
-                          >
-                            Price in USD
-                          </button>
-                        </div>
+                      <div className={styles.contain}>
+                        <h6 className="text-body-secondary fw-bolder">
+                          ₦{Math.floor(recipe.recipe.totalWeight)}.00
+                        </h6>
+                        <button
+                          type="button"
+                          className="btn btn-primary"
+                          data-bs-toggle="modal"
+                          data-bs-target="#exampleModal"
+                          onClick={() =>
+                            convertAmount(recipe.recipe.totalWeight)
+                          }
+                        >
+                          Price in USD
+                        </button>
                       </div>
                     </div>
                   </div>
                 </div>
-              );
-            })
-          : data.map((item, index) => {
-              return (
-                <div key={index} className={`card ${styles.innerCard}`}>
-                  <div className={styles.spread}>
-                    <div className={styles.image}>
-                      <Image
-                        width={200}
-                        height={200}
-                        src={item.image}
-                        className="img-fluid rounded-start"
-                        alt="..."
-                      />
-                    </div>
-                    <div className={styles.text}>
-                      <div className="card-body">
-                        <h5 className="card-title">{item.name}</h5>
-                        <p className="card-text">
-                          Calories: {item.calories.toFixed(2)}
-                        </p>
-                        <div className={styles.contain}>
-                          <h6 className="text-body-secondary fw-bolder">
-                            ₦{Math.floor(item.price)}.00
-                          </h6>
-                          <button
-                            type="button"
-                            className="btn btn-primary"
-                            data-bs-toggle="modal"
-                            data-bs-target="#exampleModal"
-                            onClick={() => convertAmount(item.price)}
-                          >
-                            Price in USD
-                          </button>
-                        </div>
+              </div>
+            );
+          })
+        ) : (
+          data.map((item, index) => {
+            return (
+              <div key={index} className={`card ${styles.innerCard}`}>
+                <div className={styles.spread}>
+                  <div className={styles.image}>
+                    <Image
+                      width={200}
+                      height={200}
+                      src={item.image}
+                      className="img-fluid rounded-start"
+                      alt="..."
+                    />
+                  </div>
+                  <div className={styles.text}>
+                    <div className="card-body">
+                      <h5 className="card-title">{item.name}</h5>
+                      <p className="card-text">
+                        Calories: {item.calories.toFixed(2)}
+                      </p>
+                      <div className={styles.contain}>
+                        <h6 className="text-body-secondary fw-bolder">
+                          ₦{Math.floor(item.price)}.00
+                        </h6>
+                        <button
+                          type="button"
+                          className="btn btn-primary"
+                          data-bs-toggle="modal"
+                          data-bs-target="#exampleModal"
+                          onClick={() => convertAmount(item.price)}
+                        >
+                          Price in USD
+                        </button>
                       </div>
                     </div>
                   </div>
                 </div>
-              );
-            })}
+              </div>
+            );
+          })
+        )}
       </div>
       <div
         className="modal fade"
