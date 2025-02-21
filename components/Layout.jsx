@@ -1,7 +1,12 @@
 import Head from "next/head";
 import Navigation from "./Navigation";
 import styles from "../styles/Layout.module.css";
-import LottieComponent from "./LottieComponent";
+import dynamic from "next/dynamic";
+
+const LottieComponent = dynamic(() => import("./LottieComponent"), {
+  ssr: false,
+});
+// import LottieComponent from "./LottieComponent";
 
 const Layout = ({ children, title, description }) => {
   return (
