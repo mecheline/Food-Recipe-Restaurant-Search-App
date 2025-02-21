@@ -10,26 +10,57 @@ const Signin = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
-  const submitHandler = async (e) => {
-    e.preventDefault();
-    console.log(email, password);
+  // const submitHandler = async (e) => {
+  //   e.preventDefault();
+  //   console.log(email, password);
 
-    try {
-      const status = await signIn("credentials", {
-        redirect: false,
-        email,
-        password,
-      });
-      console.log(status);
-      if (status.ok) {
-        toast.success("Signed in successfully");
-        router.push("/");
-      }
-      toast.error(status.error);
-    } catch (error) {
-      console.log(error);
+  //   try {
+  //     const status = await signIn("credentials", {
+  //       redirect: false,
+  //       email,
+  //       password,
+  //     });
+  //     console.log(status);
+  //     if (status.ok) {
+  //       toast.success("Signed in successfully");
+  //       router.push("/");
+  //     }
+  //     toast.error(status.error);
+  //   } catch (error) {
+  //     console.log(error);
+  //   }
+  // };
+
+const submitHandler = async (e) => {
+  e.preventDefault();
+
+  try {
+    const response = await signIn("credentials", {
+      redirect: false,
+      email,
+      password,
+    });
+
+    if (!response) {
+      toast.error("No response from server.");
+      return;
     }
-  };
+
+    if (response.error) {
+      toast.error(response.error);
+      console.error("❌ Sign-in error:", response.error);
+      return;
+    }
+
+    toast.success("Signed in successfully");
+    router.push("/");
+  } catch (error) {
+    console.error("❌ Network or server error:", error);
+    toast.error("Something went wrong. Please try again.");
+  }
+};
+
+
   return (
     <div className={styles.main}>
       <div className="mb-3 text-center">
